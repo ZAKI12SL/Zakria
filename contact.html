@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakaria | Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #051F20; --accent: #8EB69B; --text: #DAF1DE; --c2: #0B2B26; --c3: #163832; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(180deg, var(--bg), var(--c3)); color: var(--text); min-height: 100vh; padding-top: 100px; }
+        body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+        
+        /* الهيدر الموحد - الروابط في المنتصف */
+        header { display: flex; justify-content: space-between; padding: 20px 60px; align-items: center; position: fixed; top:0; width: 100%; background: rgba(5,31,32,0.9); z-index: 100; border-bottom: 1px solid rgba(142,182,155,0.1); }
+        nav { display: flex; justify-content: center; flex-grow: 1; }
+        nav a { color: var(--text); text-decoration: none; margin: 0 15px; opacity: 0.8; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: var(--accent); }
+        nav a.active { color: var(--accent); opacity: 1; }
+
+        .lang-btn { cursor: pointer; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; color: var(--accent); font-size: 0.8rem; }
+
+        .contact-card { max-width: 600px; margin: 40px auto; background: var(--c2); padding: 40px; border-radius: 30px; border: 1px solid rgba(142,182,155,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        h2 { text-align: center; margin-bottom: 30px; color: var(--accent); font-size: 2rem; }
+        
+        form { display: flex; flex-direction: column; gap: 20px; }
+        input, textarea { background: var(--bg); border: 1px solid var(--c3); padding: 15px; border-radius: 12px; color: #fff; font-family: inherit; outline: none; transition: 0.3s; }
+        input:focus, textarea:focus { border-color: var(--accent); }
+        
+        button { background: var(--accent); color: var(--bg); padding: 15px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s; }
+        button:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        @media(max-width:768px){
+            header { padding: 20px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <strong>ZAKARIA</strong>
+        <nav>
+            <a href="index.html" data-tr="h">Home</a>
+            <a href="projects.html" data-tr="pr">My Projects</a>
+            <a href="about.html" data-tr="a">About</a>
+            <a href="contact.html" class="active" data-tr="c">Contact</a>
+        </nav>
+        <div class="lang-btn" onclick="toggleLang()">AR/EN</div>
+    </header>
+
+    <div class="contact-card">
+        <h2 id="t">Get In Touch</h2>
+        <form action="https://formsubmit.co/zakislamna@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://zaki12sl.github.io/zakaria-portfolio../contact.html">
+            
+            <input type="text" name="name" id="n" placeholder="Your Name" required>
+            <input type="email" name="email" id="e" placeholder="Email Address" required>
+            <textarea name="message" id="m" rows="5" placeholder="Tell me about your project..." required></textarea>
+            
+            <button type="submit" id="b">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+        const trans = {
+            en: {
+                h: "Home", p: "Portfolio", pr: " Projects", a: "About", c: "Contact",
+                t: "Get In Touch", n: "Your Name", e: "Email Address", m: "Tell me about your project...", b: "Send Message"
+            },
+            ar: {
+                h: "الرئيسية", p: "الأعمال", pr: "مشاريعي", a: "من أنا", c: "تواصل معي",
+                t: "تواصل معي", n: "الاسم", e: "البريد الإلكتروني", m: "أخبرني عن مشروعك...", b: "إرسال الرسالة"
+            }
+        };
+
+        function applyLang(lang) {
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // تحديث النصوص في الهيدر والصفحة
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                const key = el.getAttribute('data-tr');
+                el.innerText = trans[lang][key];
+            });
+
+            // تحديث النصوص في الفورم
+            document.getElementById('t').innerText = trans[lang].t;
+            document.getElementById('n').placeholder = trans[lang].n;
+            document.getElementById('e').placeholder = trans[lang].e;
+            document.getElementById('m').placeholder = trans[lang].m;
+            document.getElementById('b').innerText = trans[lang].b;
+        }
+
+        function toggleLang() {
+            let l = localStorage.getItem('zak_lang') === 'en' ? 'ar' : 'en';
+            localStorage.setItem('zak_lang', l);
+            applyLang(l);
+        }
+
+        // تشغيل اللغة عند التحميل
+        let current = localStorage.getItem('zak_lang') || 'en';
+        applyLang(current);
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zakria | About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--c1:#051F20;--c2:#0B2B26;--c3:#163832;--c4:#235347;--c5:#8EB69B;--c6:#DAF1DE}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Inter,sans-serif;background:linear-gradient(180deg,var(--c1),var(--c3));color:var(--c6);min-height:100vh}
+    body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+    
+    a{text-decoration:none;color:inherit}
+
+    /* الهيدر الموحد والمنظم في المنتصف */
+    header{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:rgba(5,31,32,.85);position:sticky;top:0;z-index:100}
+    nav{display:flex;justify-content:center;flex-grow:1} /* يوسط الروابط */
+    nav a{margin:0 15px;opacity:.8;transition:.3s}
+    nav a:hover, nav a.active{opacity:1;color:var(--c5)}
+
+    .lang-btn { cursor: pointer; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 20px; color: var(--c5); font-size: 0.8rem; border: 1px solid var(--c5); }
+
+    section{padding:80px 60px}
+    h1{font-size:3rem;margin-bottom:20px;color:var(--c5)}
+
+    .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .bio p{opacity:.9;line-height:1.8;font-size:1.1rem}
+
+    .skills{margin-top:30px}
+    .skill{margin-bottom:18px}
+    .skill span{font-size:.9rem;opacity:.85;display:flex;justify-content:space-between}
+    .bar{height:8px;background:var(--c2);border-radius:10px;overflow:hidden;margin-top:6px}
+    
+    .fill{
+      height:100%;background:linear-gradient(90deg,var(--c4),var(--c5));
+      width:0; animation: loadSkill 1.5s ease-out forwards;
+    }
+    @keyframes loadSkill { to { width: var(--w); } }
+
+    .card{background:linear-gradient(180deg,var(--c2),var(--c3));padding:40px;border-radius:24px;border:1px solid rgba(142,182,155,0.1)}
+
+    footer{text-align:center;padding:50px;opacity:.6}
+
+    @media(max-width:900px){
+      section{padding:60px 20px} .about-wrap{grid-template-columns:1fr}
+      nav{display:none} /* يخفي القائمة في الجوال لسهولة التصفح */
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <strong>zakria</strong>
+  <nav>
+    <a href="index.html" data-tr="h">Home</a>
+    <a href="about.html" class="active" data-tr="a">About Me</a>
+    <a href="projects.html" data-tr="pr">Projects</a>
+    <a href="contact.html" data-tr="c">Contact</a>
+  </nav>
+  <div class="lang-btn" onclick="toggleLang()">AR / EN</div>
+</header>
+
+<section>
+  <h1 data-tr="at">About Me</h1>
+  <div class="about-wrap">
+
+    <div class="bio">
+      <p data-tr="desc">
+        I'm Zakaria, a graphic designer and video editor. I have experience that qualifies me to work with large companies.
+        I create highly professional videos, whether cinematic or regular YouTube content.
+      </p>
+
+      <div class="skills">
+        <div class="skill">
+          <span data-tr="s1">Video Editing (Premiere pro) <b>90%</b></span>
+          <div class="bar"><div class="fill" style="--w:90%"></div></div>
+        </div>
+        <div class="skill">
+          <span data-tr="s2">Motion Design (After Effects) <b>80%</b></span>
+          <div class="bar"><div class="fill" style="--w:80%"></div></div>
+        </div>
+        <div class="skill">
+          <span data-tr="s3">Graphic Design <b>75%</b></span>
+          <div class="bar"><div class="fill" style="--w:75%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-tr="wid">What I Do</h2>
+      <p style="margin-top:15px;opacity:.9;line-height:1.6" data-tr="list">
+        • Cinematic video editing<br>
+        • YouTube & social media content<br>
+        • Motion graphics & visual identity<br>
+        • Clean storytelling and pacing
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer>© 2026 zakria</footer>
+
+<script>
+  const trans = {
+    en: {
+      h: "Home", p: "Portfolio", pr: " Projects", a: "About", c: "Contact",
+      at: "About Me", wid: "What I Do",
+      desc: "I'm Zakaria, a graphic designer and video editor. I have experience that qualifies me to work with large companies. I create highly professional videos, whether cinematic or regular YouTube content.",
+      s1: "Video Editing (Premiere pro) 90%", s2: "Motion Design (After Effects) 80%", s3: "Graphic Design 75%",
+      list: "• Cinematic video editing<br>• YouTube & social media content<br>• Motion graphics & visual identity<br>• Clean storytelling and pacing"
+    },
+    ar: {
+      h: "الرئيسية", p: "الأعمال", pr: "مشاريعي", a: "من أنا", c: "تواصل معي",
+      at: "من أنا", wid: "ماذا أفعل",
+      desc: "أنا زكريا، مصمم جرافيك ومحرر فيديو. لدي خبرة تؤهلني للعمل مع الشركات الكبرى. أقوم بإنشاء فيديوهات باحترافية عالية، سواء كانت سينمائية أو محتوى يوتيوب عادي.",
+      s1: "تحرير الفيديو (Premiere pro) 90%", s2: "موشن جرافيك (After Effects) 80%", s3: "تصميم الجرافيك 75%",
+      list: "• تحرير الفيديو السينمائي<br>• محتوى اليوتيوب ووسائل التواصل الاجتماعي<br>• الموشن جرافيك والهوية البصرية<br>• سرد القصص المتقن وتنسيق الإيقاع"
+    }
+  };
+
+  let lang = localStorage.getItem('zak_lang') || 'en';
+
+  function apply() {
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-tr]').forEach(el => {
+      const key = el.getAttribute('data-tr');
+      el.innerHTML = trans[lang][key];
+    });
+  }
+
+  function toggleLang() {
+    lang = (lang === 'en' ? 'ar' : 'en');
+    localStorage.setItem('zak_lang', lang);
+    apply();
+  }
+
+  // تشغيل اللغة عند التحميل
+  apply();
+</script>
+
+</body>
+</html>

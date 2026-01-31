@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Zakaria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #051F20; --accent: #8EB69B; --text: #DAF1DE; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+        body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+        header { display: flex; justify-content: space-between; padding: 20px 50px; align-items: center; }
+        nav a { color: var(--text); text-decoration: none; margin: 0 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; }
+        .card { background: #0B2B26; border-radius: 15px; overflow: hidden; transition: 0.3s; opacity: 0; transform: translateY(20px); }
+        .card.show { opacity: 1; transform: translateY(0); }
+        .card:hover { transform: scale(1.02); border: 1px solid var(--accent); }
+        iframe { width: 100%; aspect-ratio: 16/9; border: none; }
+        .sh-frame { aspect-ratio: 9/16; max-width: 300px; margin: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <strong>ZAKARIA</strong>
+        <nav><a href="index.html">Home</a><a href="about.html">About Me</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a></nav>
+        <div onclick="toggleLang()" style="cursor:pointer; color:var(--accent)">AR/EN</div>
+    </header>
+    <div class="grid">
+        <div class="card"><iframe src="https://www.youtube.com/embed/7_EDJ1E3_9Q"></iframe></div>
+        <div class="card sh-frame"><iframe src="https://www.youtube.com/embed/65qVWVp4xDE"></iframe></div>
+        <div class="card"><iframe src="https://drive.google.com/file/d/1WRom97phy8O0Oc5IuxTVPnC9eLI0maxM/preview"></iframe></div>
+        <div class="card"><iframe src="https://drive.google.com/file/d/1FvHEWXFOjvk94bS64e_oAnyKE42v_G3q/preview"></iframe></div>
+    </div>
+    <script>
+        let lang = localStorage.getItem('zak_lang') || 'en';
+        document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        function toggleLang() { lang = lang==='en'?'ar':'en'; localStorage.setItem('zak_lang', lang); location.reload(); }
+        const obs = new IntersectionObserver(entries => { entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); }); });
+        document.querySelectorAll('.card').forEach(c => obs.observe(c));
+    </script>
+</body>
+</html>
